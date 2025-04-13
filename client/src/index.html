@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="GaugeMeter.js"></script>
+    <script>
+      function init_stuff()
+      {
+        const intervalId = setInterval(async () => 
+        {
+          let sysInfo = await GetSysInfo();
+          //console.log('GetSysInfo() returned: ' + sysInfo);
+          let memPercent = sysInfo.AvailablePhysicalMemory / sysInfo.TotalPhysicalMemory * 100;
+          //console.log('Memory usage: ' + memPercent);
+          $("#MemoryGauge").gaugeMeter({ percent: memPercent });
+          $("#CpuGauge").gaugeMeter({ percent: sysInfo.CPUusage });
+        }, 
+        1000);
+      }
+    </script>
+  </head>
+  <body onLoad="init_stuff()">
+    <h1>Super aplikacja</h1>
+    <p>Info o systemie:</p>
+
+    <div class="GaugeMeter" id="MemoryGauge" 
+      percent="30" 
+      data-text="Mem" 
+      data-width="8" 
+      data-theme="LightBlue-DarkBlue">
+    </div>
+    <div class="GaugeMeter" id="CpuGauge" 
+      percent="30" 
+      data-text="CPU" 
+      data-width="8" 
+      data-theme="LightBlue-DarkBlue">
+    </div>
+
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

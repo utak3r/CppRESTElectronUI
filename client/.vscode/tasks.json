@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "make",
+			"problemMatcher": [],
+			"label": "Make app",
+			"detail": "electron-builder",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "npm",
+			"script": "package",
+			"problemMatcher": [],
+			"label": "Package app",
+			"detail": "electron-forge package",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			}
+		}
+	]
+}
