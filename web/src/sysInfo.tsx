@@ -15,9 +15,9 @@ interface SystemInfo {
  * Properties of a SysInfo component.
  */
 interface SysInfoProps {
-    id: string,
-    apiUrl: string,
     apiEndPoint: string,
+    apiUrl: string,
+    id: string,
     interval: number
 }
 
@@ -26,7 +26,7 @@ interface SysInfoProps {
  * This component is self-updating, using a timer!
  */
 interface SysInfoState {
-    sytemInfo: SystemInfo;
+    systemInfo: SystemInfo;
     ramTotal: number;
     ramFree: number;
     ramUsed: number;
@@ -35,12 +35,14 @@ interface SysInfoState {
 }
 class SysInfo extends React.Component<SysInfoProps, SysInfoState> {
 
+    timerID: number;
+
     /**
      * Default values for initialization.
      *
      * @param props
      */
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         this.state = {
             systemInfo: {
@@ -48,17 +50,19 @@ class SysInfo extends React.Component<SysInfoProps, SysInfoState> {
                 TotalPhysicalMemory: 32000000,
                 CPUusage: 0
             },
+            cpuUsage: 0,
             ramTotal: 32000000,
             ramFree: 32000000,
             ramUsed: 0,
             ramUsedPercentage: 0
         }
+        this.timerID = 0;
         //console.log('SysInfo props:', this.props);
         //console.log('SysInfo state:', this.state);
     }
 
     componentDidMount() {
-        this.interval = setInterval(this.getSysInfo, this.props.interval);
+        this.timerID = setInterval(this.getSysInfo, this.props.interval);
     }
 
     /**
@@ -86,7 +90,7 @@ class SysInfo extends React.Component<SysInfoProps, SysInfoState> {
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval);
+        clearInterval(this.timerID);
     }
 
     render() {
