@@ -32,6 +32,7 @@ http::response<http::string_body> handle_request(http::request<http::string_body
         http::response<http::string_body> res{ http::status::ok, req.version() };
         res.set(http::field::server, "Beast");
         res.set(http::field::content_type, "application/json");
+        res.set(http::field::access_control_allow_origin, "*");
         res.keep_alive(req.keep_alive());
         res.body() = json_response.dump();
         res.prepare_payload();
