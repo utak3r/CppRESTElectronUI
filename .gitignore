@@ -1,6 +1,38 @@
 
+# C++ build files
 server/build/
 server/install/
+
+# React + Typescript part
+
+# Logs
+web/logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+web/node_modules
+web/dist
+web/dist-ssr
+*.local
+
+# Editor directories and files
+web/.vscode/*
+!web/.vscode/extensions.json
+web/.idea
+web/.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+
+# Electron files
 
 # Logs
 client/logs
